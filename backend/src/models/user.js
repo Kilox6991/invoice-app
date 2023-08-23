@@ -7,11 +7,6 @@ const {
 
 
 const userSchema = new mongoose.Schema({
-	userId: {
-		type: Number,
-		default: () => new Date().getTime(),
-		unique: true
-	},
 	email: {
 		type: String,
 		required: true,

@@ -1,8 +1,9 @@
 require('express-async-errors')
+//Helmet y compression
 
 const express = require('express')
 
-const errors = require('../middlewares/errors.js')
+const errors = require('../middlewares/errors')
 const userRoutes = require('../routes/user.js')
 const invoiceRoutes = require('../routes/invoice.js')
 
