@@ -11,6 +11,7 @@ import LogoutPage from "./pages/LogoutPage";
 import NewInvoice from "./pages/NewInvoicePage";
 import DeleteInvoice from "./pages/DeleteInvoice";
 import UpdateInvoice from "./pages/UpdateInvoice";
+import ProfilePage from "./pages/ProfilePage";
 
 
 const Router = createBrowserRouter([
@@ -50,6 +51,10 @@ const Router = createBrowserRouter([
       {
         path :"/update/:invoiceId/invoice",
         element:<UpdateInvoice/>,
+      },
+      {
+        path :"/profile/:userId",
+        element:<ProfilePage/>,
       },
     ],
   },
