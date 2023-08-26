@@ -5,30 +5,24 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid"
-import { borders } from '@mui/system';
-import Button from '@mui/material/Button';
-import MenuIcon from "@mui/icons-material/Menu";
+import logo from "../../assets/logo.png"
+import CssBaseline from '@mui/material/CssBaseline';
 
-import styles from "./navbar.module.css";
 
 function Navbar() {
   return (
+    <>
+    <CssBaseline />
     <Box sx={{ flexGrow: 1, display:"flex"}}>
-      <AppBar sx={{ backgroundColor: "#373B53", height:72 }}>
-        <Toolbar sx={{height:"100%"}}>
-          <Container >
+      <AppBar sx={{ backgroundColor: "#373B53", height:"72px" }}>
+        <Toolbar>
+          <Container sx={{height:"100%", pl:0}}>
           <IconButton
             edge="start"
             color="white"
-            sx={{}}
+            sx={{ pl: 0, pr: 0, pt: 0 }}
           >
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="27.58">
-              <path
-                fill="#FFF"
-                fillRule="evenodd"
-                d="M20.513 0C24.965 2.309 28 6.91 28 12.21 28 19.826 21.732 26 14 26S0 19.826 0 12.21C0 6.91 3.035 2.309 7.487 0L14 12.9z"
-              />
-            </svg>
+          <img src={logo} alt="logo-web" style={{ height: "72px", width: "72px"}}/>
           </IconButton>
           </Container>
           <IconButton
@@ -52,6 +46,7 @@ function Navbar() {
         </Toolbar>
       </AppBar>
     </Box>
+    </>
   );
 }
 
