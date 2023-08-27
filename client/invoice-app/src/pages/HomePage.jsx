@@ -45,6 +45,13 @@ const CustomCheckbox = styled(Checkbox)(({}) => ({
     color: "#7C5DFA",
   },
 }));
+const CustomLink = styled("a")({
+    textDecoration: "none", // Quita la decoración de subrayado
+    color: "inherit", // Utiliza el color heredado
+    "&:hover": {
+      color: "#7C5DFA", // Cambia el color al pasar el mouse
+    },
+  });
 
 //Estados
 const FilterIcon = ({ rotated }) => (
@@ -161,10 +168,18 @@ function HomePage() {
             New
           </CustomButton>
         </Container>
+        <CustomLink href="/detalle-factura-1">
           <InvoiceBox />
+        </CustomLink>
+        <CustomLink href="/detalle-factura-1">
           <InvoiceBox />
+        </CustomLink>
+        <CustomLink href="/detalle-factura-1">
           <InvoiceBox />
+        </CustomLink>
+        <CustomLink href="/detalle-factura-1">
           <InvoiceBox />
+        </CustomLink>
       </Box>
     </>
   );
