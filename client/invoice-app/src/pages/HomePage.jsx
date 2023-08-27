@@ -6,7 +6,9 @@ import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import InvoiceBox from "../components/InvoiceBox/Invoicebox";
 
+//Styles
 const CustomButton = styled(Button)({
   backgroundColor: "#7C5DFA",
   color: "#FFFFFF",
@@ -35,6 +37,16 @@ const CustomButton = styled(Button)({
     height: "32px",
   },
 });
+const CustomCheckbox = styled(Checkbox)(({}) => ({
+  "&:hover": {
+    color: "#5F3DC4",
+  },
+  "&.Mui-checked": {
+    color: "#7C5DFA",
+  },
+}));
+
+//Estados
 const FilterIcon = ({ rotated }) => (
   <svg
     width="11"
@@ -61,7 +73,6 @@ function HomePage() {
     setAnchorEl(event.currentTarget);
     setIsMenuOpen(!isMenuOpen);
     setIsIconRotated(!isIconRotated);
-    
   };
 
   const handleClose = () => {
@@ -105,7 +116,15 @@ function HomePage() {
               onClick={handleClick}
               style={{ textTransform: "none", color: "#0C0E16" }}
             >
-              <span style={{ marginRight: "12px", fontSize:"15px", fontWeight: "bold" }}>Filter</span>
+              <span
+                style={{
+                  marginRight: "12px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                }}
+              >
+                Filter
+              </span>
               <FilterIcon rotated={isIconRotated} />
             </Button>
             <Menu
@@ -113,20 +132,19 @@ function HomePage() {
               anchorEl={anchorEl}
               open={isMenuOpen}
               onClose={handleClose}
-              
               keepMounted
             >
               <MenuItem onClick={handleClose}>
-                <Checkbox color="primary" />
-                Paid
+                <CustomCheckbox color="primary" />
+                <div style={{ fontWeight: "bold" }}>Draft</div>{" "}
               </MenuItem>
               <MenuItem onClick={handleClose}>
-                <Checkbox color="primary" />
-                Pending
+                <CustomCheckbox color="primary" />
+                <div style={{ fontWeight: "bold" }}>Pending</div>
               </MenuItem>
               <MenuItem onClick={handleClose}>
-                <Checkbox color="primary" />
-                Draft
+                <CustomCheckbox color="primary" />
+                <div style={{ fontWeight: "bold" }}>Paid</div>
               </MenuItem>
             </Menu>
           </div>
@@ -143,9 +161,10 @@ function HomePage() {
             New
           </CustomButton>
         </Container>
-        <Container sx={{ pt: "32px", background: "#FFFFFF" }}>
-          <div>Componente de factura</div>
-        </Container>
+          <InvoiceBox />
+          <InvoiceBox />
+          <InvoiceBox />
+          <InvoiceBox />
       </Box>
     </>
   );
