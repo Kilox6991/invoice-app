@@ -8,35 +8,36 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import InvoiceBox from "../components/InvoiceBox/Invoicebox";
 
+
 //Styles
 const CustomButton = styled(Button)({
-  backgroundColor: "#7C5DFA",
-  color: "#FFFFFF",
-  borderRadius: "24px",
-  width: "90px",
-  height: "44px",
-  gap: "6px",
-  padding: "6px 15px 6px 6px",
-  textDecoration: "none",
-  border: "none",
-  display: "flex",
-  justifyContent: "space-around",
-
-  cursor: "pointer",
-  textTransform: "none",
-  "&:hover": {
-    backgroundColor: "#9277FF",
-  },
-  "& .circle": {
-    backgroundColor: "#FFFFFF",
-    borderRadius: "50%",
+    backgroundColor: "#7C5DFA",
+    color: "#FFFFFF",
+    borderRadius: "24px",
+    width: "90px",
+    height: "44px",
+    gap: "6px",
+    padding: "6px 15px 6px 6px",
+    textDecoration: "none",
+    border: "none",
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "32px",
-    height: "32px",
-  },
-});
+    justifyContent: "space-around",
+  
+    cursor: "pointer",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#9277FF",
+    },
+    "& .circle": {
+      backgroundColor: "#FFFFFF",
+      borderRadius: "50%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "32px",
+      height: "32px",
+    },
+  });
 const CustomCheckbox = styled(Checkbox)(({}) => ({
   "&:hover": {
     color: "#5F3DC4",
