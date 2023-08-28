@@ -14,7 +14,7 @@ function Navbar() {
     <>
     <CssBaseline />
     <Box sx={{ flexGrow: 1, display:"flex"}}>
-      <AppBar sx={{ backgroundColor: "#373B53", height:"72px" }}>
+      <AppBar sx={{ backgroundColor: "#373B53", height:"72px"}}>
         <Toolbar>
           <Container sx={{height:"100%", pl:0}}>
           <IconButton
