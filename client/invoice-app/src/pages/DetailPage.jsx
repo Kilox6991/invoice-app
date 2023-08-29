@@ -4,6 +4,7 @@ import Stack from "@mui/material/Stack";
 import ListItem from "@mui/material/ListItem";
 import { Link } from "react-router-dom";
 import StatusBar from "../components/DetailPage/StatusBar/StatusBar";
+import ItemsTotal from "../components/DetailPage/Items/ItemsTotal";
 
 function DetailPage() {
   return (
@@ -12,31 +13,31 @@ function DetailPage() {
         <Link
           to="/"
           style={{
-            textDecoration: "none", 
-            color: "#0C0E16", 
+            textDecoration: "none",
+            color: "#0C0E16",
             display: "flex",
             alignItems: "center",
             gap: "20px",
-            fontWeight:"bold",
-            fontSize:"15px",
+            fontWeight: "bold",
+            fontSize: "15px",
           }}
         >
           <svg width="8" height="10" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M6.342.886L2.114 5.114l4.228 4.228"
               stroke="#9277FF"
-              strokeWidth="2" 
+              strokeWidth="2"
               fill="none"
-              fillRule="evenodd" 
+              fillRule="evenodd"
             />
           </svg>
           Go Back
         </Link>
       </ListItem>
-      <ListItem><StatusBar/></ListItem>
-      <ListItem>
+      <ListItem><StatusBar /></ListItem>
+      <ListItem sx={{ display: "flex", flexDirection: "column" }} >
         <InfoInvoice />
-        {/* Items */}
+        <ItemsTotal></ItemsTotal>
       </ListItem>
     </Stack>
   );
