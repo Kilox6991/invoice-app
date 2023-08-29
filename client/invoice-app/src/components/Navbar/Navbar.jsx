@@ -8,13 +8,13 @@ function Navbar() {
   return (
     <>
       <CssBaseline />
-        <AppBar sx={{left:0, backgroundColor: "#373B53", height: { xs: "72px", sm: "100%" }, width:{xs:"100%", sm:"72px"}, pl:"0px"}}>
-          <Toolbar sx={{pl:{xs:"0px",sm:"0px"},pr:{xs:"0px",sm:"0px"},display:"flex", flexDirection:{sm:"column"}, height:{sm:"100%"}}}>
-            <Container sx={{ height: "100%", p:{xs:"0px",sm:"0px"}, m:{xs:"0px", sm:"0px"}}}>
+        <AppBar sx={{left:0, backgroundColor: "#373B53", height: { xs: "72px", lg: "100%" }, width:{xs:"100%", lg:"72px"}, pl:"0px"}}>
+          <Toolbar sx={{pl:{xs:"0px",lg:"0px"},pr:{xs:"0px",lg:"0px"},display:"flex", flexDirection:{lg:"column"}, height:{lg:"100%"}}}>
+            <Container sx={{ height: "100%", p:{xs:"0px",lg:"0px"}, m:{xs:"0px", lg:"0px"}}}>
               <IconButton
                 edge="start"
                 color="white"
-                sx={{margin:{xs:"0px",sm:"0px"}, p:{xs:"0px",sm:"0px"}}}
+                sx={{margin:{xs:"0px",lg:"0px"}, p:{xs:"0px",lg:"0px"}}}
               >
                 <img src={logo} alt="logo-web" style={{ height: "72px", width: "72px" }} />
               </IconButton>
@@ -34,7 +34,7 @@ function Navbar() {
               />
             </svg>  
             </IconButton>
-            <Grid sx={{ borderLeft:{xs:"1px solid #494E6E", sm: "none"},borderTop:{ xs:"none", sm:"1px solid #494E6E"}, pl: { xs: "10px", sm: "20px" }, pt: "20px", pb: "20px", height: {xs:"100%",sm:"100px"}, width:{xs:"100px",sm:"100%"}}}>
+            <Grid sx={{ borderLeft:{xs:"1px solid #494E6E", lg: "none"},borderTop:{ xs:"none", lg:"1px solid #494E6E"}, pl: { xs: "10px", lg: "20px" }, pt: "20px", pb: "20px", height: {xs:"100%",lg:"100px"}, width:{xs:"100px",lg:"100%"}}}>
               <Avatar alt="Remy Sharp" src={avatar} sx={{ height: 32, width: 32 }} />
             </Grid>
           </Toolbar>

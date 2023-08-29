@@ -7,38 +7,42 @@ import Checkbox from "@mui/material/Checkbox";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import InvoiceBox from "../components/InvoiceBox/Invoicebox";
+import DialogContentText from '@mui/material/DialogContentText';
+
+
 
 
 //Styles
 const CustomButton = styled(Button)({
-    backgroundColor: "#7C5DFA",
-    color: "#FFFFFF",
-    borderRadius: "24px",
-    width: "90px",
-    height: "44px",
-    gap: "6px",
-    padding: "6px 15px 6px 6px",
-    textDecoration: "none",
-    border: "none",
+  backgroundColor: "#7C5DFA",
+  color: "#FFFFFF",
+  borderRadius: "24px",
+  width: { xs: "90px", md: "150px" },
+  height: "44px",
+  gap: "6px",
+  padding: "6px 15px 6px 6px",
+  textDecoration: "none",
+  border: "none",
+  display: "flex",
+  justifyContent: "space-around",
+  fontWeight:"bold",
+
+  cursor: "pointer",
+  textTransform: "none",
+  "&:hover": {
+    backgroundColor: "#9277FF",
+  },
+  "& .circle": {
+    backgroundColor: "#FFFFFF",
+    borderRadius: "50%",
     display: "flex",
-    justifyContent: "space-around",
-  
-    cursor: "pointer",
-    textTransform: "none",
-    "&:hover": {
-      backgroundColor: "#9277FF",
-    },
-    "& .circle": {
-      backgroundColor: "#FFFFFF",
-      borderRadius: "50%",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      width: "32px",
-      height: "32px",
-    },
-  });
-const CustomCheckbox = styled(Checkbox)(({}) => ({
+    justifyContent: "center",
+    alignItems: "center",
+    width: "32px",
+    height: "32px",
+  },
+});
+const CustomCheckbox = styled(Checkbox)(({ }) => ({
   "&:hover": {
     color: "#5F3DC4",
   },
@@ -47,14 +51,15 @@ const CustomCheckbox = styled(Checkbox)(({}) => ({
   },
 }));
 const CustomLink = styled("a")({
-    textDecoration: "none", // Quita la decoración de subrayado
-    color: "inherit", // Utiliza el color heredado
-    "&:hover": {
-      color: "#7C5DFA", // Cambia el color al pasar el mouse
-    },
-  });
+  textDecoration: "none",
+  color: "inherit",
+  "&:hover": {
+    color: "#7C5DFA",
+  },
+});
 
 //Estados
+
 const FilterIcon = ({ rotated }) => (
   <svg
     width="11"
@@ -111,27 +116,50 @@ function HomePage() {
             >
               Invoices
             </div>
-            <div
+            <div direction="row" spacing="10px"
               style={{ fontSize: "13px", color: "#888EB0", marginTop: "-8px" }}
             >
-              7 invoices
+              <DialogContentText sx={{
+                    display: ["none", "inline"],
+                    color: "#888EB0",
+                    fontSize:"13px"
+                  }}>
+              There are<span> </span>
+              </DialogContentText>
+              7<span> </span>
+              <DialogContentText sx={{
+                    display: ["none", "inline"],
+                    color: "#888EB0",
+                    fontSize:"13px"
+                  }}>
+              total<span> </span>  
+              </DialogContentText> 
+              invoices
             </div>
           </div>
-          <div>
+          <Box sx={{marginLeft:["0px","250px"]}}>
             <Button
               aria-controls="filter-menu"
               aria-haspopup="true"
               onClick={handleClick}
-              style={{ textTransform: "none", color: "#0C0E16" }}
+              style={{ textTransform: "none", color: "#0C0E16"}}
             >
               <span
                 style={{
                   marginRight: "12px",
                   fontSize: "15px",
-                  fontWeight: "bold",
+                  fontWeight: "bold"
                 }}
               >
                 Filter
+                <DialogContentText
+                  sx={{
+                    display: ["none", "inline"],
+                    fontWeight: "bold",
+                    color: "#0C0E16"
+                  }}
+                > by status
+                </DialogContentText>
               </span>
               <FilterIcon rotated={isIconRotated} />
             </Button>
@@ -155,7 +183,7 @@ function HomePage() {
                 <div style={{ fontWeight: "bold" }}>Paid</div>
               </MenuItem>
             </Menu>
-          </div>
+          </Box>
           <CustomButton href="#text-buttons">
             <div className="circle">
               <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg">
@@ -166,7 +194,15 @@ function HomePage() {
                 />
               </svg>
             </div>
-            New
+            New<DialogContentText
+              sx={{
+                display: ["none", "inline"],
+                color: "#FFFFFF",
+                fontWeight:"bold",
+                fontSize:"15px",
+              }}
+            > Invoice
+            </DialogContentText>
           </CustomButton>
         </Container>
         <CustomLink href="/detalle-factura-1">
