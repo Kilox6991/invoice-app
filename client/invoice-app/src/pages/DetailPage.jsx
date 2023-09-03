@@ -5,11 +5,12 @@ import ListItem from "@mui/material/ListItem";
 import { Link } from "react-router-dom";
 import StatusBar from "../components/DetailPage/StatusBar/StatusBar";
 import ItemsTotal from "../components/DetailPage/Items/ItemsTotal";
+import { Box } from "@mui/material";
 
 function DetailPage() {
   return (
-    <Stack>
-      <ListItem sx={{ mt: "105px" }}>
+    <Stack direction="column" sx={{display:"flex", justifyContent:"center"}}>
+      <Box sx={{ mt: "105px" }}>
         <Link
           to="/"
           style={{
@@ -20,6 +21,8 @@ function DetailPage() {
             gap: "20px",
             fontWeight: "bold",
             fontSize: "15px",
+            marginTop:"0px",
+            marginBottom:"32px"
           }}
         >
           <svg width="8" height="10" xmlns="http://www.w3.org/2000/svg">
@@ -33,12 +36,14 @@ function DetailPage() {
           </svg>
           Go Back
         </Link>
-      </ListItem>
-      <ListItem><StatusBar /></ListItem>
-      <ListItem sx={{ display: "flex", flexDirection: "column" }} >
+      </Box>
+      <Box>
+        <StatusBar />
+      </Box>
+      <Box sx={{ display: "flex", flexDirection: "column" }} >
         <InfoInvoice />
         <ItemsTotal></ItemsTotal>
-      </ListItem>
+      </Box>
     </Stack>
   );
 }

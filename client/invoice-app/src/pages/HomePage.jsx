@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InvoiceBox from "../components/InvoiceBox/Invoicebox";
 import DialogContentText from '@mui/material/DialogContentText';
 
-
+import useInvoices from "../hooks/useInvoices";
 
 
 //Styles
@@ -70,14 +70,16 @@ const FilterIcon = ({ rotated }) => (
     <path
       d="M1 1l4.228 4.228L9.456 1"
       stroke="#7C5DFA"
-      stroke-width="2"
+      strokeWidth="2"
       fill="none"
-      fill-rule="evenodd"
+      fillRule="evenodd"
     />
   </svg>
 );
 
 function HomePage() {
+  const {invoices, loading}=useInvoices();
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isIconRotated, setIsIconRotated] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -93,6 +95,7 @@ function HomePage() {
     setIsMenuOpen(false);
     setIsIconRotated(!isIconRotated);
   };
+  if(loading) return
   return (
     <>
       <CssBaseline />
@@ -205,18 +208,12 @@ function HomePage() {
             </DialogContentText>
           </CustomButton>
         </Container>
-        <CustomLink href="/detalle-factura-1">
-          <InvoiceBox />
-        </CustomLink>
-        <CustomLink href="/detalle-factura-1">
-          <InvoiceBox />
-        </CustomLink>
-        <CustomLink href="/detalle-factura-1">
-          <InvoiceBox />
-        </CustomLink>
-        <CustomLink href="/detalle-factura-1">
-          <InvoiceBox />
-        </CustomLink>
+
+        {invoices.map((invoice) => (
+          <CustomLink key={invoice._id} href={`/detalle-factura-${invoice._id}`}>
+            <InvoiceBox invoice={invoice} />
+          </CustomLink>
+        ))}
       </Box>
     </>
   );

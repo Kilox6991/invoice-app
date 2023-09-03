@@ -12,10 +12,10 @@ function InfoInvoice() {
       }}
     >
       <Box>
-        <div>
+        <Box sx={{marginTop:"16px"}}>
           <p style={{fontWeight:"bold", fontSize:"15px"}}>#AB4567</p>
           <p style={{color:"#7E88C3", fontSize:"13px"}}>Re-branding</p>
-        </div>
+        </Box>
 
         <Box>
           <p style={{color:"#7E88C3", fontSize:"13px"}}>106 Kendell Street,,</p>
@@ -28,10 +28,10 @@ function InfoInvoice() {
       <Box>
         <Box>
           <Box>
-            <div>
+            <Box>
               <p style={{color:"#7E88C3", fontSize:"13px"}}>Invoice Date</p>
               <p style={{fontWeight:"bold", fontSize:"15px"}}>2021-8-18</p>
-            </div>
+            </Box>
 
             <Box>
               <p style={{color:"#7E88C3", fontSize:"13px"}}>Payment Due</p>
@@ -52,10 +52,10 @@ function InfoInvoice() {
           </Box>
         </Box>
 
-        <div className="info__title-wrap">
+        <Box className="info__title-wrap">
           <p style={{color:"#7E88C3", fontSize:"13px"}}>Sent to</p>
           <p style={{fontWeight:"bold", fontSize:"15px"}}>jensenh@mail.com</p>
-        </div>
+        </Box>
       </Box>
     </Box>
   );
