@@ -24,8 +24,9 @@ function ItemsTotal() {
           <ListItemText primary={'$total'} />
         </ListItem>
       </List>
-      <div style={{ backgroundColor: "#373B53", color: "#FFFFFF", padding: '10px', p: 0, m: 0, borderRadius: '0 0 6px 6px' }}>
-        <Typography>Amount Due: $totalAmount</Typography>
+      <div style={{ backgroundColor: "#373B53", color: "#FFFFFF", padding: '10px', p: 0, m: 0, borderRadius: '0 0 6px 6px', display:"flex", justifyContent:"space-around", gap:"100px" }}>
+        <Typography>Amount Due:</Typography>
+        <Typography>$totalAmount</Typography>
       </div>
     </Box>
   );

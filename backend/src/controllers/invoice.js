@@ -22,8 +22,8 @@ const getInvoiceFiltered = async (req, res) => {
     res.status(200).json(filteredInvoice);
 }
 const getInvoiceById = async (req, res) => {
-    const idInvoice = req.params.idInvoice
-    const oneInvoice = await Invoice.findById(idInvoice)
+    const invoiceId = req.params.invoiceId
+    const oneInvoice = await Invoice.findById(invoiceId)
     res.json(oneInvoice)
 }
 const createInvoice = async (req, res) => {

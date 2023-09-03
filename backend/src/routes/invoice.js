@@ -18,7 +18,7 @@ const router = express.Router();
 // Rutas para obtener facturas
 router.get("/", getInvoices); //isAuth,isUserInvoice,
 router.get("/filter",isAuth,isUserInvoice, getInvoiceFiltered); 
-router.get("/:invoiceId",isAuth,isUserInvoice, getInvoiceById); 
+router.get("/:invoiceId", getInvoiceById); //,isAuth,isUserInvoice
 
 // Rutas para crear facturas
 router.post("/", createInvoice); //pendingInvoiceSchemaValidation ,isAuth,isUserInvoice

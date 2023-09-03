@@ -30,7 +30,7 @@ function getStatusColorDiv(status) {
 }
 
 function InvoiceBox({invoice}) {
-  console.log(invoice.items)
+  
   const items = invoice.items
   let total = 0
   for (let i = 0; i < items.length; i++) {
@@ -38,7 +38,7 @@ function InvoiceBox({invoice}) {
     const itemTotal = item.quantity * item.price;
     total += itemTotal;
   }
-  console.log(total)
+  
   return (
     <>
       <CssBaseline />

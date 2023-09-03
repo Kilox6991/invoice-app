@@ -5,9 +5,9 @@ import ErrorPage from "./pages/ErrorPage";
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import LogoutPage from "./pages/LogoutPage";
+import LoginPage from "./pages/users/LoginPage";
+import RegisterPage from "./pages/users/RegisterPage";
+import LogoutPage from "./pages/users/LogoutPage";
 import NewInvoice from "./pages/NewInvoicePage";
 import DeleteInvoice from "./pages/DeleteInvoice";
 import UpdateInvoice from "./pages/UpdateInvoice";
@@ -26,7 +26,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/invoice/:invoiceId",
-        element: <DetailPage />,
+        element: <DetailPage/>,
       },
       {
         path :"/signin",

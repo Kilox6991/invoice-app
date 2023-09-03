@@ -61,9 +61,10 @@ const CustomButton3 = styled(Button)({
 
 function StatusBar() {
   return (
-    <Box display="flex">
-      <Box>
-        <Typography sx={{ color: "#858BB2", fontSize: "13px" }}>
+    <Box sx={{display:"flex", justifyContent:"space-around"}}>
+      <Box sx={{display:"flex", gap:"20px", mt:"10px"}}>
+        <Typography sx={{ color: "#858BB2", fontSize: "13px",
+            mt:"10px"   }}>
           Status
         </Typography>
         <Stack
@@ -76,7 +77,7 @@ function StatusBar() {
             height: "40px",
             borderRadius: "6px",
             display:"flex",
-            justifyContent:"center",  
+            justifyContent:"center"
           }}
         >
           <div

@@ -7,9 +7,25 @@ import StatusBar from "../components/DetailPage/StatusBar/StatusBar";
 import ItemsTotal from "../components/DetailPage/Items/ItemsTotal";
 import { Box } from "@mui/material";
 
+import useInvoice from "../hooks/useInvoice";
+import { useParams } from "react-router-dom";
+
 function DetailPage() {
+  const { invoiceId } = useParams();
+  
+  const { invoice, loading, errors } = useInvoice(invoiceId);
+  console.log(invoice)
   return (
-    <Stack direction="column" sx={{display:"flex", justifyContent:"center"}}>
+    <Stack
+      direction="column"
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        ml: { xs: "20px", lg: "100px" },
+        mr:"40px",
+        gap:"30px"
+      }}
+    >
       <Box sx={{ mt: "105px" }}>
         <Link
           to="/"
@@ -21,8 +37,8 @@ function DetailPage() {
             gap: "20px",
             fontWeight: "bold",
             fontSize: "15px",
-            marginTop:"0px",
-            marginBottom:"32px"
+            marginTop: "0px",
+            marginBottom: "32px",
           }}
         >
           <svg width="8" height="10" xmlns="http://www.w3.org/2000/svg">
@@ -37,11 +53,15 @@ function DetailPage() {
           Go Back
         </Link>
       </Box>
-      <Box>
+      <Box
+        sx={{
+          background: "white",
+        }}
+      >
         <StatusBar />
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column" }} >
-        <InfoInvoice />
+      <Box sx={{ display: "flex", flexDirection: "column",background: "white"  }}>
+        <InfoInvoice invoice={invoice} loading={loading}/>
         <ItemsTotal></ItemsTotal>
       </Box>
     </Stack>
