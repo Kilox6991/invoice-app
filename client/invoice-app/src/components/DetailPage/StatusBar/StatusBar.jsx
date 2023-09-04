@@ -57,9 +57,37 @@ const CustomButton3 = styled(Button)({
     backgroundColor: "#9277FF",
   }
 });
+//Estilos condicionados para el status
+function getStatusColor(status) {
+  switch (status) {
+    case "Paid":
+      return "#33D69F"; // Verde para "Paid"
+    case "Pending":
+      return "#F9A52B"; // Amarillo para "Pending"
+    case "Draft":
+      return "#888EB0"; // Gris para "Draft" 
+    default:
+      return "#888EB0"; // Gris por defecto para otros estados
+  }
+}
+function getStatusColorDiv(status) {
+  switch (status) {
+    case "Paid":
+      return "rgba(51, 214, 159, 0.7)"; // Verde con opacidad
+    case "Pending":
+      return "rgba(249, 165, 43, 0.7)"; // Amarillo con opacidad
+    case "Draft":
+      return "rgba(136, 142, 176, 0.7)"; // Gris con opacidad
+    default:
+      return "rgba(136, 142, 176, 0.7)"; // Gris por defecto 
+  }
+}
 //-------- --------//
 
-function StatusBar() {
+function StatusBar({invoice, loading}) {
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   return (
     <Box sx={{display:"flex", justifyContent:"space-around"}}>
       <Box sx={{display:"flex", gap:"20px", mt:"10px"}}>
@@ -72,7 +100,7 @@ function StatusBar() {
           alignItems="center"
           spacing={1.5}
           sx={{
-            backgroundColor: "rgba(51, 214, 159, 0.5)",
+            backgroundColor:getStatusColorDiv(invoice.status),
             width: "104px",
             height: "40px",
             borderRadius: "6px",
@@ -86,9 +114,10 @@ function StatusBar() {
               borderRadius: "50%",
               width: "10px",
               height: "10px",
+              backgroundColor: getStatusColor(invoice.status),
             }}
           ></div>
-          <Typography variant="body2" sx={{}}>Paid</Typography>
+          <Typography variant="body2" sx={{}}>{invoice.status}</Typography>
         </Stack>
       </Box>
       <Box>

@@ -1,7 +1,6 @@
 
 import { Box, Container, styled } from "@mui/material";
 
-import useInvoice from "../../../hooks/useInvoice";
 
 function InfoInvoice({invoice, loading}) {
   if (loading) {
@@ -20,17 +19,17 @@ function InfoInvoice({invoice, loading}) {
     >
       <Box sx={{ display: "flex", justifyContent: "space-between", marginRight:{xs:"0px", sm:"100px", lg:"200px"},marginLeft:{xs:"0px", sm:"100px", lg:"200px"} }}>
         <Box sx={{ marginTop: "16px" }}>
-          <p style={{ fontWeight: "bold", fontSize: "15px" }}>#AB4567</p>
-          <p style={{ color: "#7E88C3", fontSize: "13px" }}>Re-branding</p>
+          <p style={{ fontWeight: "bold", fontSize: "15px" }}>#{invoice.invoiceNumber}</p>
+          <p style={{ color: "#7E88C3", fontSize: "13px" }}>{invoice.description}</p>
         </Box>
 
         <Box>
           <p style={{ color: "#7E88C3", fontSize: "13px" }}>
-            106 Kendell Street,,
+            {invoice.senderAddress.street}
           </p>
-          <p style={{ color: "#7E88C3", fontSize: "13px" }}>Sharrington,,</p>
-          <p style={{ color: "#7E88C3", fontSize: "13px" }}>NR24 5WQ,</p>
-          <p style={{ color: "#7E88C3", fontSize: "13px" }}>United Kingdom</p>
+          <p style={{ color: "#7E88C3", fontSize: "13px" }}>{invoice.senderAddress.city}</p>
+          <p style={{ color: "#7E88C3", fontSize: "13px" }}>{invoice.senderAddress.postCode}</p>
+          <p style={{ color: "#7E88C3", fontSize: "13px" }}>{invoice.senderAddress.country}</p>
         </Box>
       </Box>
 
@@ -38,25 +37,25 @@ function InfoInvoice({invoice, loading}) {
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <Box>
             <p style={{ color: "#7E88C3", fontSize: "13px" }}>Invoice Date</p>
-            <p style={{ fontWeight: "bold", fontSize: "15px" }}>2021-8-18</p>
+            <p style={{ fontWeight: "bold", fontSize: "15px" }}>{invoice.createdAt}</p>
 
             <p style={{ color: "#7E88C3", fontSize: "13px" }}>Payment Due</p>
-            <p style={{ fontWeight: "bold", fontSize: "15px" }}>2021-8-19</p>
+            <p style={{ fontWeight: "bold", fontSize: "15px" }}>{invoice.paymentDue}</p>
           </Box>
           <Box>
             <p style={{ color: "#7E88C3", fontSize: "13px" }}>Bill To</p>
-            <p style={{ fontWeight: "bold", fontSize: "15px" }}>Jensen Huang</p>
+            <p style={{ fontWeight: "bold", fontSize: "15px" }}>{invoice.clientName}</p>
             <p style={{ color: "#7E88C3", fontSize: "13px" }}>
-              19 Union Terrace,
+            {invoice.clientAddress.street},
             </p>
-            <p style={{ color: "#7E88C3", fontSize: "13px" }}>London,</p>
-            <p style={{ color: "#7E88C3", fontSize: "13px" }}>E1 3EZ,</p>
-            <p style={{ color: "#7E88C3", fontSize: "13px" }}>United Kingdom</p>
+            <p style={{ color: "#7E88C3", fontSize: "13px" }}>{invoice.clientAddress.city},</p>
+            <p style={{ color: "#7E88C3", fontSize: "13px" }}>{invoice.clientAddress.postCode},</p>
+            <p style={{ color: "#7E88C3", fontSize: "13px" }}>{invoice.clientAddress.country}</p>
           </Box>
           <Box>
             <p style={{ color: "#7E88C3", fontSize: "13px" }}>Sent to</p>
             <p style={{ fontWeight: "bold", fontSize: "15px" }}>
-              jensenh@mail.com
+            {invoice.email}
             </p>
           </Box>
         </Box>

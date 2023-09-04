@@ -10,6 +10,8 @@ import { Box } from "@mui/material";
 import useInvoice from "../hooks/useInvoice";
 import { useParams } from "react-router-dom";
 
+
+
 function DetailPage() {
   const { invoiceId } = useParams();
   
@@ -58,7 +60,7 @@ function DetailPage() {
           background: "white",
         }}
       >
-        <StatusBar />
+        <StatusBar invoice={invoice} loading={loading} />
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column",background: "white"  }}>
         <InfoInvoice invoice={invoice} loading={loading}/>
