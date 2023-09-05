@@ -1,10 +1,7 @@
 import Drawer from "@mui/material/Drawer";
 import {useState} from 'react'
-import AddressForm from "./AddressForm"; // Asumiendo que has corregido el nombre del componente
-import ClientForm from "./ClientForm";
-import DateForm from "./DateForm";
-import ItemListForm from "./ItemListForm";
-import Form from "./Form"
+
+import Form from "../Form"
 import { Delete } from "@mui/icons-material";
 import {getFormFields, validationSchema} from './form-fields'
 
@@ -101,7 +98,7 @@ function InvoiceForm({ onClose }) {
       
 
         <Form
-            heading="New Invoice"
+            heading="Update Invoice"
             buttonLabel="Vamos"
             formFields={getFormFields(handleAddInvoiceRow, invoiceRows)}
             validationSchema={validationSchema}

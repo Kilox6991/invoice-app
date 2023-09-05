@@ -8,7 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import InvoiceBox from "../components/InvoiceBox/Invoicebox";
 import DialogContentText from '@mui/material/DialogContentText';
-import Invoice2Form from "../components/InvoiceForm/Invoice2Form";
+import Invoice2Form from "../components/InvoiceForm/NewInvoice/Invoice2Form";
 import { Link } from "react-router-dom";
 
 import useInvoices from "../hooks/useInvoices";
@@ -233,7 +233,7 @@ function HomePage() {
             </DialogContentText>
           </CustomButton>
         </Container>
-
+        
         {filteredInvoices.map((invoice) => (
           <CustomLink key={invoice._id} to={`/invoice/${invoice._id}`}>
             <InvoiceBox invoice={invoice} />

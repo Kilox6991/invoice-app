@@ -8,10 +8,10 @@ import DetailPage from "./pages/DetailPage";
 import LoginPage from "./pages/users/LoginPage";
 import RegisterPage from "./pages/users/RegisterPage";
 import LogoutPage from "./pages/users/LogoutPage";
-import NewInvoice from "./pages/NewInvoicePage";
 import DeleteInvoice from "./pages/DeleteInvoice";
 import UpdateInvoice from "./pages/UpdateInvoice";
 import ProfilePage from "./pages/ProfilePage";
+
 
 
 const Router = createBrowserRouter([
@@ -39,10 +39,6 @@ const Router = createBrowserRouter([
       {
         path :"/logout",
         element:<LogoutPage/>,
-      },
-      {
-        path :"/new/invoice",
-        element:<NewInvoice/>,
       },
       {
         path :"/delete/:invoiceId/invoice",

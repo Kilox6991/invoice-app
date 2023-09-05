@@ -1,5 +1,9 @@
-import React from "react";
+import React,{ useState } from "react";
+
 import { Box, Button, Typography, Stack, styled } from "@mui/material";
+import Invoice2Form from '../../InvoiceForm/UpdateForm/Invoice2Form'
+import invoicesService from '../../../services/invoice-service'
+import { useNavigate } from 'react-router-dom'
 
 //Estilos 3 botones//
 const CustomButton1 = styled(Button)({
@@ -83,8 +87,19 @@ function getStatusColorDiv(status) {
   }
 }
 //-------- --------//
+function deleteInvoice(){
+  invoicesService.delete()
+			.then(() => {
+				const updateInvoices = workdays.filter((workday) => workday._id !== openId);
+				setWorkdays(updateInvoices)
+				handleClose();
+        navigate("/");
+			})
+}
 
-function StatusBar({invoice, loading}) {
+function StatusBar({invoice, loading, openId}) {
+  const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate()
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -121,8 +136,13 @@ function StatusBar({invoice, loading}) {
         </Stack>
       </Box>
       <Box>
-        <CustomButton1 variant="outlined">Edit</CustomButton1>
-        <CustomButton2 variant="outlined">Delete</CustomButton2>
+        <CustomButton1 variant="outlined" onClick={() => setShowForm(true)}>Edit</CustomButton1>
+        {showForm && (
+          <div style={{ marginTop: "20px" }}>
+            <Invoice2Form onClose={() => setShowForm(false)} />
+          </div>
+        )}
+        <CustomButton2 variant="outlined" onClick={() => deleteInvoice(openId)}>Delete</CustomButton2>
         <CustomButton3 variant="contained" color="primary">
           Mark as Paid
         </CustomButton3>

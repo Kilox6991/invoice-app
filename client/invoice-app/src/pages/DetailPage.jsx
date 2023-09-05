@@ -16,7 +16,8 @@ function DetailPage() {
   const { invoiceId } = useParams();
   
   const { invoice, loading, errors } = useInvoice(invoiceId);
-  console.log(invoice)
+  
+  
   return (
     <Stack
       direction="column"

@@ -14,6 +14,7 @@ module.exports = async function (req, res, next) {
 
         
         const userId = decoded.userId;
+        console.log(userId)
 
        
         const user = await User.findById(userId);
@@ -23,9 +24,10 @@ module.exports = async function (req, res, next) {
         }
 
         
-        const userInvoices = await Invoice.find({ user: userId });
-
-        req.userInvoices = userInvoices;
+        const userInvoiceIds = user.invoices;
+        console.log(userInvoiceIds)
+        req.userInvoiceIds = userInvoiceIds;
+        
 
         next();
     } catch (err) {

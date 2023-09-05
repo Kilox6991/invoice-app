@@ -1,10 +1,37 @@
-import React from 'react';
-import { AppBar, Avatar, Container, CssBaseline, IconButton, Toolbar, Grid } from "@mui/material";
+
+import React, { useState, useContext } from 'react';
+import { AppBar, Avatar, Container, CssBaseline, IconButton, Toolbar, Grid, Modal, Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import logo from "../../assets/logo.png";
 import avatar from "../../assets/avatar.jpg";
 
+import authService from "../../services/isAuth-service"
+import LogoutPage from '../../pages/users/LogoutPage';
+import { useAuth } from '../../hooks/isAuth';
+import { useNavigate } from 'react-router-dom';
+
 function Navbar() {
+  const [user, dispatch] = useAuth()
+  const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate()
+
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  const handleLogout = () => {
+    authService.logout()
+
+	  dispatch({ type: 'logout' })
+    
+    handleCloseModal();
+    navigate("/signin")
+  };
   return (
     <>
       <CssBaseline />
@@ -35,11 +62,26 @@ function Navbar() {
             </svg>  
             </IconButton>
             <Grid sx={{ borderLeft:{xs:"1px solid #494E6E", lg: "none"},borderTop:{ xs:"none", lg:"1px solid #494E6E"}, pl: { xs: "10px", lg: "20px" }, pt: "20px", pb: "20px", height: {xs:"100%",lg:"100px"}, width:{xs:"100px",lg:"100%"}}}>
+            <IconButton onClick={handleOpenModal}>
               <Avatar alt="Remy Sharp" src={avatar} sx={{ height: 32, width: 32 }} />
+            </IconButton>
             </Grid>
           </Toolbar>
         </AppBar>
-      
+        <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '4px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
+          <h2 id="simple-modal-title">Cerrar sesión</h2>
+          <p id="simple-modal-description">¿Estás seguro de que deseas cerrar sesión?</p>
+          <Button onClick={handleCloseModal} sx={{ marginRight: '16px' }}>Cancelar</Button>
+          <Button onClick={handleLogout} variant="contained" color="primary">Confirmar</Button>
+        </div>
+      </Modal>
     </>
   );
 }

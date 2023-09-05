@@ -8,6 +8,6 @@ const router = express.Router()
 router.post('/signup', UserControllers.register);
 
 // Ruta para el inicio de sesión
-router.post('/login', UserControllers.login);
+router.post('/signin', UserControllers.login);
 
 module.exports = router

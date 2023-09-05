@@ -1,17 +1,41 @@
-const Invoice = require('../models/invoice')
+const Invoice = require('../models/invoice');
+const User = require('../models/user');
 
 const getInvoices = async (req, res) => {
+    try {
+        const userId = req.user._id;
+        const user = await User.findById(userId);
 
-    const invoices = await Invoice.find({});
+        if (!user || !user.invoices || user.invoices.length === 0) {
+            return res.status(404).json({
+                message: "No se encontraron facturas para este usuario"
+            });
+        }
 
-    if (!invoices || invoices.length === 0) {
-        return res.status(404).json({
-            message: "No se encontraron facturas"
+        const invoiceIds = user.invoices;
+        console.log(invoiceIds);
+
+        const invoices = await Invoice.find({
+            _id: {
+                $in: invoiceIds
+            }
+        });
+
+        if (!invoices || invoices.length === 0) {
+            return res.status(404).json({
+                message: "No se encontraron facturas para este usuario"
+            });
+        }
+
+        res.status(200).json(invoices);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Error al buscar facturas"
         });
     }
-    res.status(200).json(invoices);
-
 };
+
 const getInvoiceFiltered = async (req, res) => {
     const {
         status
@@ -27,9 +51,17 @@ const getInvoiceById = async (req, res) => {
     res.json(oneInvoice)
 }
 const createInvoice = async (req, res) => {
+    const userId = req.user["_id"]
     const invoiceData = req.body;
+
     const newInvoice = new Invoice(invoiceData);
     await newInvoice.save();
+
+    const invoiceId = newInvoice["_id"]
+    const user = await User.findById(userId);
+    user.invoices.push(invoiceId)
+    await user.save()
+
     res.status(201).json(newInvoice);
 }
 const updateInvoice = async (req, res) => {

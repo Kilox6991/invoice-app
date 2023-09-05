@@ -16,21 +16,21 @@ const {
 const router = express.Router();
 
 // Rutas para obtener facturas
-router.get("/", getInvoices); //isAuth,isUserInvoice,
+router.get("/",isAuth, getInvoices); //isAuth,isUserInvoice,
 router.get("/filter",isAuth,isUserInvoice, getInvoiceFiltered); 
 router.get("/:invoiceId", getInvoiceById); //,isAuth,isUserInvoice
 
 // Rutas para crear facturas
-router.post("/", createInvoice); //pendingInvoiceSchemaValidation ,isAuth,isUserInvoice
-router.post("/draft",isAuth,isUserInvoice, createInvoice); // draftInvoiceSchemaValidation
+router.post("/",isAuth, createInvoice); //pendingInvoiceSchemaValidation ,isAuth,isUserInvoice
+router.post("/draft",isAuth, createInvoice); // draftInvoiceSchemaValidation
 
 // Ruta para actualizar facturas
-router.put("/:invoiceId",isAuth,isUserInvoice, updateInvoice); //pendingInvoiceSchemaValidation,
+router.put("/:invoiceId",isAuth, updateInvoice); //pendingInvoiceSchemaValidation,
 
 // Ruta para marcar una factura como pagada
-router.put("/paid/:invoiceId",isAuth,isUserInvoice, markInvoiceAsPaid);
+router.put("/paid/:invoiceId",isAuth, markInvoiceAsPaid);
 
 // Ruta para eliminar una factura
-router.delete("/:invoiceId",isAuth,isUserInvoice, deleteInvoice);
+router.delete("/:invoiceId",isAuth, deleteInvoice);
 
 module.exports = router;

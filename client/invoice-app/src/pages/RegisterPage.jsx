@@ -1,6 +1,9 @@
+import Form from '../components/InvoiceForm/Form'
+import InvoiceForm from "../components/InvoiceForm/RegisterForm/Invoice2Form";
+
 function RegisterPage() {
     return(
-        <div>RegisterPage</div>
+        <div style={{marginLeft:"200px"}}><InvoiceForm/></div>
     )
 }
 

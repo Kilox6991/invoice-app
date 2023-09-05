@@ -9,10 +9,6 @@ const InvoiceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  user: {
-    type: String,
-    require: true
-  },
   createdAt: {
     type: String,
     required: true
