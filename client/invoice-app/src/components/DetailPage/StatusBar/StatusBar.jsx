@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 
 import { Box, Button, Typography, Stack, styled } from "@mui/material";
 import Invoice2Form from '../../InvoiceForm/UpdateForm/Invoice2Form'
@@ -22,7 +22,7 @@ const CustomButton1 = styled(Button)({
   textTransform: "none",
   "&:hover": {
     backgroundColor: "#FFFFFF",
-    color:"#DFE3FA"
+    color: "#DFE3FA"
   }
 });
 const CustomButton2 = styled(Button)({
@@ -41,7 +41,7 @@ const CustomButton2 = styled(Button)({
   textTransform: "none",
   "&:hover": {
     backgroundColor: "#FF9797",
-    color:"#FFFFFF"
+    color: "#FFFFFF"
   }
 });
 const CustomButton3 = styled(Button)({
@@ -87,27 +87,35 @@ function getStatusColorDiv(status) {
   }
 }
 //-------- --------//
-function deleteInvoice(){
-  invoicesService.delete()
-			.then(() => {
-				const updateInvoices = workdays.filter((workday) => workday._id !== openId);
-				setWorkdays(updateInvoices)
-				handleClose();
-        navigate("/");
-			})
-}
 
-function StatusBar({invoice, loading, openId}) {
+
+function StatusBar({ invoice, loading, openId }) {
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate()
+
+  function deleteInvoice() {
+
+    invoicesService.delete(invoice._id)
+      .then(() => {
+
+        navigate("/");
+      })
+  }
+
   if (loading) {
     return <p>Loading...</p>;
   }
+
+  const markAsPaid = () => {
+    const updatedInvoice = { ...invoice, status: 'Paid' };
+  };
   return (
-    <Box sx={{display:"flex", justifyContent:"space-around"}}>
-      <Box sx={{display:"flex", gap:"20px", mt:"10px"}}>
-        <Typography sx={{ color: "#858BB2", fontSize: "13px",
-            mt:"10px"   }}>
+    <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+      <Box sx={{ display: "flex", gap: "20px", mt: "10px" }}>
+        <Typography sx={{
+          color: "#858BB2", fontSize: "13px",
+          mt: "10px"
+        }}>
           Status
         </Typography>
         <Stack
@@ -115,12 +123,12 @@ function StatusBar({invoice, loading, openId}) {
           alignItems="center"
           spacing={1.5}
           sx={{
-            backgroundColor:getStatusColorDiv(invoice.status),
+            backgroundColor: getStatusColorDiv(invoice.status),
             width: "104px",
             height: "40px",
             borderRadius: "6px",
-            display:"flex",
-            justifyContent:"center"
+            display: "flex",
+            justifyContent: "center"
           }}
         >
           <div
@@ -142,10 +150,12 @@ function StatusBar({invoice, loading, openId}) {
             <Invoice2Form onClose={() => setShowForm(false)} />
           </div>
         )}
-        <CustomButton2 variant="outlined" onClick={() => deleteInvoice(openId)}>Delete</CustomButton2>
-        <CustomButton3 variant="contained" color="primary">
-          Mark as Paid
-        </CustomButton3>
+        <CustomButton2 variant="outlined" onClick={deleteInvoice}>Delete</CustomButton2>
+        {invoice.status !== 'Paid' && (
+          <CustomButton3 variant="contained" color="primary" onClick={markAsPaid}>
+            Mark as Paid
+          </CustomButton3>
+        )}
       </Box>
     </Box>
   );

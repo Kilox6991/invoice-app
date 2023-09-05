@@ -1,120 +1,120 @@
 import * as yup from "yup";
 
-
-
-const getFormFields = (onAdd, invoiceRows) => [
+const getFormFields = () => [
   {
     heading: "Bill to",
-    groupStyles: { marginBottom: "50px" },
+    type: 'heading',
+    styles: { marginBottom: "50px" },
+  },
+  {
+    name: "senderAddress.street",
+    label: "streetAddress",
+    inputStyles: {
+      width: "504px",
+      marginBottom: "20px",
+    },
+  },
+  {
+    containerId: "1",
+    styles: {
+      marginTop: "25px",
+      display: "flex",
+      padding: 0,
+    },
+    type: "container",
     children: [
       {
-        name: "streetAddress",
-        label: "streetAddress",
+        name: "senderAddress.city",
+        label: "cityFrom",
         inputStyles: {
-          width: "504px",
-          marginBottom: "20px",
+          width: "152px",
         },
       },
       {
-        containerStyles: {
-          marginTop: "25px",
-          display: "flex",
-          padding: 0,
+        name: "senderAddress.postCode",
+        label: "postCodeFrom",
+        inputStyles: {
+          width: "152px",
         },
-        children: [
-          {
-            name: "city",
-            label: "cityFrom",
-            inputStyles: {
-              width: "152px",
-            },
-          },
-          {
-            name: "postCodeFrom",
-            label: "postCodeFrom",
-            inputStyles: {
-              width: "152px",
-            },
-          },
-          {
-            name: "countryFrom",
-            label: "Country From",
-            inputStyles: {
-              width: "152px",
-            },
-          },
-        ],
-      }
+      },
+      {
+        name: "senderAddress.country",
+        label: "Country From",
+        inputStyles: {
+          width: "152px",
+        },
+      },
     ],
   },
   {
     heading: "Bill from",
-    groupStyles: { marginBottom: "50px" },
+    type: 'heading',
+    headingStyles: { marginBottom: "50px" },
+  },
+  {
+    name: "clientName",
+    label: "Client's Name",
+    inputStyles: {
+      width: "504px",
+      marginBottom: "20px",
+    },
+  },
+  {
+    name: "clientEmail",
+    label: "Client's Email",
+    inputStyles: {
+      width: "504px",
+      marginBottom: "20px",
+    },
+  },
+
+  {
+    name: "clientAddress.street",
+    label: "streetAddress",
+    inputStyles: {
+      width: "504px",
+      marginBottom: "20px",
+    },
+  },
+
+  {
+    styles: {
+      marginTop: "25px",
+      display: "flex",
+      padding: 0,
+    },
+    type: "container",
+    containerId: "2",
     children: [
       {
-        name: "clientName",
-        label: "Client's Name",
+        name: "clientAddress.city",
+        label: "cityFrom",
         inputStyles: {
-          width: "504px",
-          marginBottom: "20px",
+          width: "152px",
         },
       },
       {
-        name: "clientEmail",
-        label: "Client's Email",
+        name: "clientAddress.postCode",
+        label: "postCodeFrom",
         inputStyles: {
-          width: "504px",
-          marginBottom: "20px",
+          width: "152px",
         },
       },
       {
-        name: "streetAddress",
-        label: "streetAddress",
+        name: "clientAddress.country",
+        label: "Country From",
         inputStyles: {
-          width: "504px",
-          marginBottom: "20px",
+          width: "152px",
         },
       },
-      {
-        containerStyles: {
-          marginTop: "25px",
-          display: "flex",
-          padding: 0,
-        },
-        children: [
-          {
-            name: "city",
-            label: "cityFrom",
-            inputStyles: {
-              width: "152px",
-            },
-          },
-          {
-            name: "postCodeFrom",
-            label: "postCodeFrom",
-            inputStyles: {
-              width: "152px",
-            },
-          },
-          {
-            name: "countryFrom",
-            label: "Country From",
-            inputStyles: {
-              width: "152px",
-            },
-          },
-        ],
-      },
-
-
     ],
   },
+
   {
     name: "date",
     label: "Date",
     type: "date",
   },
-
   {
     name: "terms",
     label: "Payment Terms",
@@ -131,33 +131,45 @@ const getFormFields = (onAdd, invoiceRows) => [
 
   {
     heading: "List Items",
-    groupStyles: { marginBottom: "100px" },
-    children: invoiceRows
-  },
+    type: 'heading',
+    headingStyles: { marginBottom: "100px", color: "gray" },
 
-  {
-    groupStyles: { marginBottom: "100px" },
-    children: [
-      {
-        containerStyles: {
-          padding: 0,
-        },
-        children: [
-          {
-            id: "1",
-            type: "action",
-            labelButton: "Añade item",
-            onClick: onAdd
-          },
-        ],
-      },
-    ],
   },
+  {
+    name: "items",
+    type: "array",
+    rowStyles: {},
+    children: [{
+      "name": "Producto 1",
+      "quantity": 2,
+      "price": 50.00
+    },
+    {
+      "name": "Producto 2",
+      "quantity": 3,
+      "price": 25.00
+    }],
+  }
+
 
 ];
 
 const validationSchema = yup.object().shape({
-  postCodeFrom: yup.string().required(),
+  clientName: yup.string().required(),
+  senderAddress: yup.object().shape({
+    street: yup.string().required(),
+    city: yup.string().required(),
+    postCode: yup.string().required(),
+    country: yup.string().required(),
+  }),
+  items: yup.array().of(
+    yup.object().shape({
+      name: yup.string().required("Nombre obligatorio"),
+      quantity: yup.number().typeError("Debe ser un numero").required("Quantity obligatoria"),
+      price: yup.number().typeError("Debe ser un numero").required(),
+    })
+  )
+
 });
 
 export { getFormFields, validationSchema };

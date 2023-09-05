@@ -18,7 +18,7 @@ import {
 // 			<div style={{marginBottom:"26px"}}>
 // 				<label htmlFor="streetAddress" style={{color:"#7C5DFA"}}>Bill to</label>
 // 			</div>
-			
+
 // 		</div>
 // 	)
 // }
@@ -28,38 +28,38 @@ const InputField = ({ name, errors, label, value, inputStyles, labelStyles, ...r
 	console.log(errors)
 	return (
 		<FormControl>
-			
-				<TextField
-				
-					error={!!errors}
-					helperText={errors?.message}
-					id={name}
-					{...rest}
-					value={value || ''}
-					label={label}
-					variant="standard"
-					InputProps={{
-						sx: {
+
+			<TextField
+
+				error={!!errors}
+				helperText={errors?.message}
+				id={name}
+				{...rest}
+				value={value || ''}
+				label={label}
+				variant="standard"
+				InputProps={{
+					sx: {
 						...inputStyles,
-						height: "48px", 
-						padding: "8px", 
-						border: "1px solid #DFE3FA", 
+						height: "48px",
+						padding: "8px",
+						border: "1px solid #DFE3FA",
 						borderRadius: "4px",
 						fontWeight: "bold"
-						},
-						disableUnderline: true
-					}}
-					InputLabelProps={{
-						
-						shrink: true,
-						disableAnimation: false,
-						sx: {
-							...labelStyles,
-							color: "#7E88C3",
-						}
-					}}
+					},
+					disableUnderline: true
+				}}
+				InputLabelProps={{
 
-				/>
+					shrink: true,
+					disableAnimation: false,
+					sx: {
+						...labelStyles,
+						color: "#7E88C3",
+					}
+				}}
+
+			/>
 		</FormControl>
 	)
 }
@@ -71,7 +71,7 @@ const MenuProps = {
 		style: {
 			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
 			width: 250,
-		
+
 		},
 	},
 }
@@ -156,10 +156,20 @@ const FileField = ({
 }
 
 
-const Actions = ({item}) => {
+const Actions = ({ item }) => {
 	const Item = item
 	return (<Item>dsfasdf</Item>)
 }
 
+const HeadingFields = ({ styles, heading }) => {
+	return (
+		<div style={{ marginBottom: "26px" }} sx={styles}>
+			<label htmlFor="streetAddress" style={{ color: "#7C5DFA" }}>
+				{heading}
+			</label>
+		</div>)
 
-export default { input: InputField, select: SelectField, file: FileField, actions: Actions }
+}
+
+
+export default { heading: HeadingFields, input: InputField, select: SelectField, file: FileField, actions: Actions }

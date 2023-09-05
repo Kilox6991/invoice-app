@@ -85,8 +85,10 @@ const deleteInvoice = async (req, res) => {
     const {
         invoiceId
     } = req.params;
-    const existingInvoice = await Invoice.findById(invoiceId);
-    await existingInvoice.remove();
+    const existingInvoice = await Invoice.findByIdAndDelete(invoiceId);
+
+
+    res.json(existingInvoice)
 }
 
 module.exports = {
