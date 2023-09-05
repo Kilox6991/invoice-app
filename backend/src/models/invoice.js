@@ -1,17 +1,33 @@
 const mongoose = require('mongoose')
 
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// Función para generar una letra aleatoria
+function getRandomLetter() {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  return alphabet[Math.floor(Math.random() * alphabet.length)];
+}
+
 const InvoiceSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true
-  },
+  
   invoiceNumber: {
     type: String,
-    required: true
+    default: () => {
+      // Generar el número de factura aleatorio con dos letras y cuatro números
+      let invoiceNumber = '';
+      for (let i = 0; i < 2; i++) {
+        invoiceNumber += getRandomLetter();
+      }
+      for (let i = 0; i < 4; i++) {
+        invoiceNumber += getRandomNumber(0, 9);
+      }
+      return invoiceNumber;
+    },
   },
-  createdAt: {
-    type: String,
-    required: true
+  date: {
+    type: Date, 
   },
   paymentDue: {
     type: String
@@ -30,7 +46,21 @@ const InvoiceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    required: true
+    default: function () {
+      // Calcular el estado en función de la fecha de pago y los días de plazo de pago
+      if (!this.paymentDue || !this.termsOfpaymentDays) {
+        return 'Draft';
+      }
+      const currentDate = new Date();
+      const dueDate = new Date(this.paymentDue);
+      dueDate.setDate(dueDate.getDate() + this.termsOfpaymentDays);
+
+      if (currentDate <= dueDate) {
+        return 'Pending';
+      } else {
+        return 'Paid';
+      }
+    },
   },
   senderAddress: {
     street: String,

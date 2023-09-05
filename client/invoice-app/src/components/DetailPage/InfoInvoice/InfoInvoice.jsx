@@ -37,7 +37,7 @@ function InfoInvoice({invoice, loading}) {
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
           <Box>
             <p style={{ color: "#7E88C3", fontSize: "13px" }}>Invoice Date</p>
-            <p style={{ fontWeight: "bold", fontSize: "15px" }}>{invoice.createdAt}</p>
+            <p style={{ fontWeight: "bold", fontSize: "15px" }}>{invoice.date}</p>
 
             <p style={{ color: "#7E88C3", fontSize: "13px" }}>Payment Due</p>
             <p style={{ fontWeight: "bold", fontSize: "15px" }}>{invoice.paymentDue}</p>
@@ -55,7 +55,7 @@ function InfoInvoice({invoice, loading}) {
           <Box>
             <p style={{ color: "#7E88C3", fontSize: "13px" }}>Sent to</p>
             <p style={{ fontWeight: "bold", fontSize: "15px" }}>
-            {invoice.email}
+            {invoice.clientEmail}
             </p>
           </Box>
         </Box>
