@@ -60,7 +60,7 @@ function InvoiceBox({invoice}) {
             #<span style={{ fontWeight: "bold" }}>{invoice.invoiceNumber}</span>
           </p>
           <p style={{ color: "#888EB0" }}>
-            Due <span>{moment(new Date(invoice.createdAt)).format("D MMM YYYY")}</span> 
+            Due <span>{moment(new Date(invoice.date)).format("D MMM YYYY")}</span> 
           </p>
           <p style={{ fontWeight: "bold" }}>
             £<span>{total}</span>

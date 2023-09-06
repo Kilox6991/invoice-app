@@ -11,7 +11,7 @@ function InvoiceForm({ onClose }) {
 
 
   const onSubmit = (data) => {
-    console.log("esta es la data",data )
+   console.log(data)
     invoicesService.create(data)
   }
   return (

@@ -65,7 +65,7 @@ function DetailPage() {
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column",background: "white"  }}>
         <InfoInvoice invoice={invoice} loading={loading}/>
-        <ItemsTotal></ItemsTotal>
+        <ItemsTotal invoice={invoice} loading={loading}></ItemsTotal>
       </Box>
     </Stack>
   );

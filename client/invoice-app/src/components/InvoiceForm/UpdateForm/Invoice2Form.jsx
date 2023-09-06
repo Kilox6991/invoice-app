@@ -17,6 +17,8 @@ function InvoiceForm({ onClose }) {
 
   const onSubmit = (data) => {
     console.log(data)
+    const updateInvoiceId = invoice._id
+    invoicesService.update(data, updateInvoiceId);
   }
 
   if (loading) return <CircularProgress />

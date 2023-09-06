@@ -1,6 +1,8 @@
 const Invoice = require('../models/invoice');
 const User = require('../models/user');
 
+const moment = require('moment')
+
 const getInvoices = async (req, res) => {
     try {
         const userId = req.user._id;
@@ -52,9 +54,16 @@ const getInvoiceById = async (req, res) => {
 }
 const createInvoice = async (req, res) => {
     const userId = req.user["_id"]
+
     const invoiceData = req.body;
 
+    const fecha = req.body.date
+    const terminosPago = req.body.terms
+    const fechaPago = moment(new Date(fecha)).add(terminosPago, 'days').format("Y-MM-DD")
+    invoiceData.paymentDue = fechaPago
+   
     const newInvoice = new Invoice(invoiceData);
+
     await newInvoice.save();
 
     const invoiceId = newInvoice["_id"]
@@ -65,10 +74,13 @@ const createInvoice = async (req, res) => {
     res.status(201).json(newInvoice);
 }
 const updateInvoice = async (req, res) => {
-    const {
-        invoiceId
-    } = req.params;
-    const existingInvoice = await Invoice.findById(invoiceId);
+    const existingInvoice = await Invoice.findById(req.params.invoiceId);
+    
+    const fecha = req.body.date
+    const terminosPago = req.body.terms
+    const fechaPago = moment(new Date(fecha)).add(terminosPago, 'days').format("YYY-MM-D")
+    existingInvoice.paymentDue = fechaPago
+   
     Object.assign(existingInvoice, req.body);
     await existingInvoice.save();
     res.status(200).json(existingInvoice)

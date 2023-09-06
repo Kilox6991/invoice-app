@@ -11,7 +11,7 @@ function getRandomLetter() {
 }
 
 const InvoiceSchema = new mongoose.Schema({
-  
+
   invoiceNumber: {
     type: String,
     default: () => {
@@ -27,7 +27,8 @@ const InvoiceSchema = new mongoose.Schema({
     },
   },
   date: {
-    type: Date, 
+    type: String,
+    default: Date.now
   },
   paymentDue: {
     type: String

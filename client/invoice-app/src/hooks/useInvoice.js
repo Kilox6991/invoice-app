@@ -7,7 +7,6 @@ function useInvoice(invoiceId) {
 	const [errors, setErrors] = useState()
 
 	useEffect(() => {
-		console.log("holaa")
 		invoicesService
 			.getById(invoiceId)
 			.then(({ data }) => setInvoice(data))

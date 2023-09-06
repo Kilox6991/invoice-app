@@ -10,7 +10,7 @@ apiClient.interceptors.response.use(
 	(response) => {
 		// 200
 
-		console.log('respuesta', response)
+		
 
 		return response
 	},
