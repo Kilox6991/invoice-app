@@ -235,8 +235,8 @@ function HomePage() {
         </Container>
         
         {filteredInvoices.map((invoice) => (
-          <CustomLink key={invoice._id} to={`/invoice/${invoice._id}`}>
-            <InvoiceBox invoice={invoice} />
+          <CustomLink key={invoice._id} to={`/invoice/${invoice._id}`} >
+            <InvoiceBox invoice={invoice} sx={{ width:{xs:"327px", sm:'672px',md:"672px", lg: '730px'}}} />
           </CustomLink>
         ))}
         {showForm && (

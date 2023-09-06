@@ -29,8 +29,8 @@ function getStatusColorDiv(status) {
   }
 }
 
-function InvoiceBox({invoice}) {
-  
+function InvoiceBox({ invoice }) {
+
   const items = invoice.items
   let total = 0
   for (let i = 0; i < items.length; i++) {
@@ -38,62 +38,63 @@ function InvoiceBox({invoice}) {
     const itemTotal = item.quantity * item.price;
     total += itemTotal;
   }
-  
+
   return (
     <>
       <CssBaseline />
-    <Box sx={{width: "327px",
-            height: "134px",
-            margin:"auto",
-            marginBottom:"16px",
-            
-            backgroundColor:"#FFFFFF"}}>
-      <Grid
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          borderRadius: "10px",
-        }}
-      >
-        <div>
-          <p>
-            #<span style={{ fontWeight: "bold" }}>{invoice.invoiceNumber}</span>
-          </p>
-          <p style={{ color: "#888EB0" }}>
-            Due <span>{moment(new Date(invoice.date)).format("D MMM YYYY")}</span> 
-          </p>
-          <p style={{ fontWeight: "bold" }}>
-            £<span>{total}</span>
-          </p>
-        </div>
-        <div>
-          <p style={{ color: "#888EB0" }}>{invoice.clientName}</p>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: "6px",
-              backgroundColor: getStatusColorDiv(invoice.status),
-              width: "104px",
-              height: "40px",
-              
-            }}
-          >
+      <Box sx={{
+        width: { xs: "327px", sm: '672px', lg: '730px' },
+        height: { xs: "134px", sm: '134px' },
+        margin: "auto",
+        marginBottom: "16px",
+        backgroundColor: "#FFFFFF",
+      }}>
+        <Grid
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            borderRadius: "10px",
+          }}
+        >
+          <div style={{ display: { xs: "block", sm: "flex" }, gap: '20px' }}>
+            <p>
+              #<span style={{ fontWeight: "bold" }}>{invoice.invoiceNumber}</span>
+            </p>
+            <p style={{ color: "#888EB0" }}>
+              Due <span>{moment(new Date(invoice.date)).format("D MMM YYYY")}</span>
+            </p>
+            <p style={{ fontWeight: "bold" }}>
+              £<span>{total}</span>
+            </p>
+          </div>
+          <div style={{ display: { xs: "block", sm: "flex" }, gap: '20px' }}>
+            <p style={{ color: "#888EB0" }}>{invoice.clientName}</p>
             <div
               style={{
-                backgroundColor: getStatusColor(invoice.status),
-                borderRadius: "50%",
-                width: "10px",
-                height: "10px",
-                marginRight: "8px",
-                
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "6px",
+                backgroundColor: getStatusColorDiv(invoice.status),
+                width: "104px",
+                height: "40px",
+
               }}
-            ></div>
-            <p style={{ color: getStatusColor(invoice.status)}}>{invoice.status}</p>
+            >
+              <div
+                style={{
+                  backgroundColor: getStatusColor(invoice.status),
+                  borderRadius: "50%",
+                  width: "10px",
+                  height: "10px",
+                  marginRight: "8px",
+
+                }}
+              ></div>
+              <p style={{ color: getStatusColor(invoice.status) }}>{invoice.status}</p>
+            </div>
           </div>
-        </div>
-      </Grid>
+        </Grid>
       </Box>
     </>
   );

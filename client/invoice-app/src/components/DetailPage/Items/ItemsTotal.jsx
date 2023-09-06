@@ -20,7 +20,7 @@ function ItemsTotal({invoice, loading}) {
   }
   console.log(invoice)
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", p: 0, margin: 0 }}>
+    <Box sx={{ display: "flex", flexDirection: "column", p: 0, margin: 0}}>
       <List sx={{ borderRadius: '6px 6px 0 0', background: "#F9FAFE" }}>
         {invoice.items.map((item, index) => (
           <ListItem key={index}>

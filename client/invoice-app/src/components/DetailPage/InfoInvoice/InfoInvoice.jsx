@@ -13,7 +13,7 @@ function InfoInvoice({invoice, loading}) {
         display: "flex",
         flexDirection: "column",
         padding: "32px",
-        marginTop: "40px",
+        marginTop: "1px",
        gap:"21px"
       }}
     >
